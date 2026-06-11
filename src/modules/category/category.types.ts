@@ -3,13 +3,13 @@
 
 // Data kategori yang diterima DARI backend
 export interface Category {
-  id: number
-  name: string
-  color: string
+  id: number;
+  name: string;
+  color: string;
 }
 
 // Data yang DIKIRIM ke backend saat membuat kategori
 export interface CategoryPayload {
-  name: string
-  color?: string
+  name: string;
+  color?: string;
 }

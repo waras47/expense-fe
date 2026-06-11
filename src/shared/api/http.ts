@@ -1,4 +1,4 @@
-import axios, { type AxiosInstance } from 'axios'
+import axios, { type AxiosInstance } from "axios";
 
 /**
  * Instance axios terpusat — dipakai semua modul.
@@ -11,29 +11,39 @@ import axios, { type AxiosInstance } from 'axios'
  * langsung berisi payload (`data`).
  */
 export const http: AxiosInstance = axios.create({
-  baseURL: '/api',
-  headers: { 'Content-Type': 'application/json' },
-})
+  baseURL: "/api",
+  headers: { "Content-Type": "application/json" },
+});
 
 http.interceptors.response.use(
   (response) => {
-    const body = response.data
-    if (body && typeof body === 'object' && 'status' in body && 'code' in body) {
-      response.data = body.data !== undefined ? body.data : body
+    const body = response.data;
+    if (
+      body &&
+      typeof body === "object" &&
+      "status" in body &&
+      "code" in body
+    ) {
+      response.data = body.data !== undefined ? body.data : body;
     }
-    return response
+    return response;
   },
   (error) => {
-    const body = error.response?.data
-    if (body && typeof body === 'object') {
-      error.response.data = { error: body.message || body.error || 'Terjadi kesalahan' }
+    const body = error.response?.data;
+    if (body && typeof body === "object") {
+      error.response.data = {
+        error: body.message || body.error || "Terjadi kesalahan",
+      };
     }
-    return Promise.reject(error)
+    return Promise.reject(error);
   },
-)
+);
 
 /** Ambil pesan error yang ramah dari error axios */
-export function getErrorMessage(e: unknown, fallback = 'Terjadi kesalahan'): string {
-  const err = e as { response?: { data?: { error?: string } } }
-  return err?.response?.data?.error ?? fallback
+export function getErrorMessage(
+  e: unknown,
+  fallback = "Terjadi kesalahan",
+): string {
+  const err = e as { response?: { data?: { error?: string } } };
+  return err?.response?.data?.error ?? fallback;
 }
