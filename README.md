@@ -9,15 +9,15 @@ Dibangun dengan **Vue 3**, **Pinia**, **Vite**, dan **Chart.js**.
 
 ## Fitur
 
-| Halaman | URL | Keterangan |
-|---------|-----|-----------|
-| Dashboard | `/` | Ringkasan keuangan, grafik, saldo bulan ini |
-| Pengeluaran | `/expenses` | CRUD + filter bulan & kategori |
-| Pemasukan | `/incomes` | Catat gaji, freelance, bisnis, dll |
-| Hutang | `/debts` | Catat hutang/piutang, tandai lunas |
-| Transfer | `/transfers` | Transfer antar rekening / e-wallet |
-| Scan Struk | `/receipt` | 📷 Upload foto → AI baca otomatis |
-| Kategori | `/categories` | Kelola kategori + warna |
+| Halaman     | URL           | Keterangan                                  |
+| ----------- | ------------- | ------------------------------------------- |
+| Dashboard   | `/`           | Ringkasan keuangan, grafik, saldo bulan ini |
+| Pengeluaran | `/expenses`   | CRUD + filter bulan & kategori              |
+| Pemasukan   | `/incomes`    | Catat gaji, freelance, bisnis, dll          |
+| Hutang      | `/debts`      | Catat hutang/piutang, tandai lunas          |
+| Transfer    | `/transfers`  | Transfer antar rekening / e-wallet          |
+| Scan Struk  | `/receipt`    | 📷 Upload foto → AI baca otomatis           |
+| Kategori    | `/categories` | Kelola kategori + warna                     |
 
 ---
 
@@ -58,20 +58,21 @@ frontend/
 
 ## Tech Stack
 
-| Library | Versi | Kegunaan |
-|---------|-------|---------|
-| [Vue 3](https://vuejs.org) | 3.4 | Framework UI (Composition API) |
-| [Pinia](https://pinia.vuejs.org) | 2.1 | State management |
-| [Vue Router](https://router.vuejs.org) | 4.3 | Client-side routing |
-| [Axios](https://axios-http.com) | 1.6 | HTTP requests ke backend |
-| [Chart.js](https://chartjs.org) + vue-chartjs | 4.4 | Grafik bar & donut |
-| [Vite](https://vitejs.dev) | 5.0 | Build tool + dev server |
+| Library                                       | Versi | Kegunaan                       |
+| --------------------------------------------- | ----- | ------------------------------ |
+| [Vue 3](https://vuejs.org)                    | 3.4   | Framework UI (Composition API) |
+| [Pinia](https://pinia.vuejs.org)              | 2.1   | State management               |
+| [Vue Router](https://router.vuejs.org)        | 4.3   | Client-side routing            |
+| [Axios](https://axios-http.com)               | 1.6   | HTTP requests ke backend       |
+| [Chart.js](https://chartjs.org) + vue-chartjs | 4.4   | Grafik bar & donut             |
+| [Vite](https://vitejs.dev)                    | 5.0   | Build tool + dev server        |
 
 ---
 
 ## Cara Menjalankan
 
 ### Prasyarat
+
 - Node.js 18+
 - Backend Go sudah berjalan di port **8081**
 
@@ -122,6 +123,7 @@ location /api/ {
 ## Halaman & Komponen
 
 ### Dashboard (`/`)
+
 - Kartu saldo: **Pemasukan** vs **Pengeluaran** vs **Saldo**
 - Kartu hutang: total hutang belum lunas & piutang belum dibayar
 - Bar chart: perbandingan pengeluaran vs pemasukan 6 bulan
@@ -129,27 +131,32 @@ location /api/ {
 - Shortcut ke semua fitur
 
 ### Pengeluaran (`/expenses`)
+
 - Tabel pengeluaran dengan filter **bulan** & **kategori**
 - CRUD lengkap (buat, edit, hapus)
 - Ringkasan bulanan & per kategori
 
 ### Pemasukan (`/incomes`)
+
 - Tabel pemasukan dengan filter bulan & kategori
 - Kategori: `salary`, `freelance`, `business`, `investment`, `gift`, `other`
 - CRUD + ringkasan 6 bulan
 
 ### Hutang (`/debts`)
+
 - Tab: **Semua / Hutang saya / Piutang saya**
 - Toggle: tampilkan belum lunas saja
 - Tombol **Tandai Lunas** — langsung update status
 - Indikator jatuh tempo (merah jika sudah lewat)
 
 ### Transfer (`/transfers`)
+
 - Catat perpindahan saldo: BCA → GoPay, Mandiri → OVO, dll
 - Filter per bulan & akun asal
 - Tampilan arah transfer yang jelas
 
 ### Scan Struk (`/receipt`)
+
 1. Upload foto struk (drag & drop atau klik)
 2. AI (Claude Vision) membaca struk → hasilkan data terstruktur
 3. Review hasil: nama toko, tanggal, list item, total
@@ -158,6 +165,7 @@ location /api/ {
 > **Prasyarat scan:** `ANTHROPIC_API_KEY` harus diset di backend `.env`
 
 ### Kategori (`/categories`)
+
 - Grid kartu kategori dengan warna
 - Color picker + 10 preset warna
 - Hapus kategori
@@ -168,13 +176,13 @@ location /api/ {
 
 Warna utama (CSS variables di `style.css`):
 
-| Variable | Warna | Digunakan untuk |
-|----------|-------|----------------|
-| `--red` | `#E8442A` | Tombol utama, pengeluaran |
-| `--teal` | `#2ABFA3` | Pemasukan, lunas |
-| `--yellow` | `#F5C842` | Aksen |
-| `--blue` | `#3D8EE8` | Info |
-| `--cream` | `#F5F0E8` | Background |
+| Variable   | Warna     | Digunakan untuk           |
+| ---------- | --------- | ------------------------- |
+| `--red`    | `#E8442A` | Tombol utama, pengeluaran |
+| `--teal`   | `#2ABFA3` | Pemasukan, lunas          |
+| `--yellow` | `#F5C842` | Aksen                     |
+| `--blue`   | `#3D8EE8` | Info                      |
+| `--cream`  | `#F5F0E8` | Background                |
 
 Font: **Syne** (heading) + **DM Sans** (body)
 
@@ -193,7 +201,7 @@ docker run -p 3000:80 duitku-frontend
 Atau pakai `docker-compose` bersama backend:
 
 ```yaml
-version: '3.8'
+version: "3.8"
 services:
   frontend:
     build: ./frontend
