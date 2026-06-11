@@ -6,7 +6,7 @@
   <div class="page">
     <header class="header">
       <div>
-        <h1>🏷️ Kategori</h1>
+        <h1 class="text-[#50d71e]">🏷️ Kategori</h1>
         <p class="muted">Contoh modul sederhana: list, tambah, hapus.</p>
       </div>
     </header>
